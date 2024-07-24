@@ -148,17 +148,17 @@
 // console.log(dojo);         // logs san jose (global variable)
 // ==============================================================
 // Example 10:
-// console.log(makeDojo("Chicago", 65)); // This call will work correctly 
-// console.log(makeDojo("Berkeley", 0)); // This will give us an error because const is immutable and we try to reassign it
-// function makeDojo(name, students){
-//     const dojo = {};
-//     dojo.name = name;
-//     dojo.students = students;
-//     if(dojo.students > 50){
-//         dojo.hiring = true;
-//     }
-//     else if(dojo.students <= 0){
-//         dojo = "closed for now"; // logs TypeError: Assignment to constant variable.
-//     }
-//     return dojo;
-// }
+console.log(makeDojo("Chicago", 65)); // This call will work correctly 
+console.log(makeDojo("Berkeley", 0)); // This will give us an error because const is immutable and we try to reassign it
+function makeDojo(name, students){
+    const dojo = {};
+    dojo.name = name;
+    dojo.students = students;
+    if(dojo.students > 50){
+        dojo.hiring = true;
+    }
+    else if(dojo.students <= 0){
+        dojo = "closed for now"; // logs TypeError: Assignment to constant variable.
+    }
+    return dojo;
+}

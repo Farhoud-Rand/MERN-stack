@@ -51,21 +51,47 @@
 // console.log(secondKey);             // [1, 5, 1, 8, 3, 3]
 // console.log(secondKey[0]);          // 1
 // console.log(willThisWork);          // 5
-
-var magicalUnicorns;
-magicalUnicorns();
-magicalUnicorns = function(){
-    console.log("Will it blend?");
-}
-console.log("Don't breathe this!");
-
-
-
-
-
-
-
-
-
-
-
+const person = {
+    firstName: 'Bob',
+    lastName: 'Marley',
+    email: 'bob@marley.com',
+    password: 'sekureP@ssw0rd9',
+    username: 'barley',
+    addresses: [
+        {
+        address: '1600 Pennsylvania Avenue',
+        city: 'Washington, D.C.',
+        zipcode: ['20500'],
+        },
+        {
+        address: '221B Baker St.',
+        city: 'London',
+        zipcode: 'WC2N 5DU',
+        }
+    ],
+    createdAt: 1543945177623
+};
+const { addresses: [{zipcode:[x]}] } = person;
+console.log(x);
+const person1 = [
+    'Bob',
+    'Marley',
+    'bob@marley.com',
+    'sekureP@ssw0rd9',
+    'barley',
+    [
+        {
+        address: '1600 Pennsylvania Avenue',
+        city: 'Washington, D.C.',
+        zipcode: {v1:'20500',v2:555},
+        },
+        {
+        address: '221B Baker St.',
+        city: 'London',
+        zipcode: 'WC2N 5DU',
+        }
+    ],
+    1543945177623
+];
+const [,,,,,[{zipcode:{v1}}]] = person1
+console.log(v1)

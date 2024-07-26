@@ -52,6 +52,14 @@
 // console.log(secondKey[0]);          // 1
 // console.log(willThisWork);          // 5
 
+var magicalUnicorns;
+magicalUnicorns();
+magicalUnicorns = function(){
+    console.log("Will it blend?");
+}
+console.log("Don't breathe this!");
+
+
 
 
 

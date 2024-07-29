@@ -11,10 +11,10 @@ function App() {
   return (
     <>
     {/* Create new components from Person component */}
-    <Person firstName = {"Jame"} lastName={"Doe"} age={45} color={"Black"}/>
-    <Person firstName = {"John"} lastName={"Smith"} age={88} color={"Brown"}/>
-    <Person firstName = {"Millard"} lastName={"Fillmore"} age={50} color={"Brown"}/>
-    <Person firstName = {"Maria"} lastName={"Smith"} age={45} color={"Brown"}/>
+    <Person firstName = {"Jame"} lastName={"Doe"} inputAge={45} color={"Black"}/>
+    <Person firstName = {"John"} lastName={"Smith"} inputAge={88} color={"Brown"}/>
+    <Person firstName = {"Millard"} lastName={"Fillmore"} inputAge={50} color={"Brown"}/>
+    <Person firstName = {"Maria"} lastName={"Smith"} inputAge={45} color={"Brown"}/>
     </>
   )
 }

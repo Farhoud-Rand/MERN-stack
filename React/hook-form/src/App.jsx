@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <UserForm setUser={newUser}></UserForm>
-      <hr class="border border-5 border-warning my-4 "></hr>
+      <hr className="border border-5 border-warning my-4 "></hr>
       <DisplayInfo user={user}></DisplayInfo>
     </div>
   );

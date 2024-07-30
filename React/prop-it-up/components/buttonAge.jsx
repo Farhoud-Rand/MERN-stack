@@ -3,10 +3,10 @@ import buttonStyle from "../componentcss/buttonAge.module.css"
 // This is new component
 // We must pass props as parameter for the function in order to get data from new instances 
 const ButtonAge = (props) => {
-    const {firstName, lastName, age} = props;
+    const {firstName, lastName, age,setAge} = props;
 
     const clickHandler = () => {
-        props.setAge(age+1)
+        setAge(age+1)
     }
 
     return (

@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 
 const UserForm = (props) => {
+    // Form inputs
     const [firstname, setFisrtname] = useState("");
     const [lastname, setLastname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    // Form input errors
     const [errors, setErrors] = useState({ firstname: "", lastname: "", email: "", password: "", confirmPassword: "" })
-    // const [canSubmit,setCanSubmit] = useState(false)
+    // This state to make the input empty after submit the form
+    const [newUser, setNewUser] = useState(false)
 
     // Function to check if there is any error in errors object in order to avoid submit the form when we have invalid data 
     const areAllFieldsEmpty = () => {
@@ -28,8 +31,6 @@ const UserForm = (props) => {
     const createUser = (e) => {
         // we must prevent the default refresh of the browser to keep our state from being reset
         e.preventDefault();
-        console.log(errors)
-        console.log(areAllFieldsEmpty())
         if (areAllFieldsEmpty()) {
             // create a javascript object to hold all of the values
             const newUser = {
@@ -39,7 +40,9 @@ const UserForm = (props) => {
                 password: password,
                 confirmPassword: confirmPassword
             };
-            console.log(newUser)
+            // Make the input value = ""
+            setNewUser(true);
+            // Empty the input states
             setFisrtname("");
             setLastname("");
             setEmail("");
@@ -53,106 +56,102 @@ const UserForm = (props) => {
 
     // Function to add firstname validation
     const firstNamevalidation = (e) => {
-        console.log("errors", errors)
-        setFisrtname(e.target.value);
-        if (firstname.length < 2) {
+        setNewUser(false); // We need to make it false to enable typing new input
+        if (e.target.value.length < 2) {
             setErrors({ ...errors, firstname: "First Name must be at least 2 characters" })
-            // setCanSubmit(false)
         } else {
             setErrors({ ...errors, firstname: "" })
-            // setCanSubmit(true)
+            setFisrtname(e.target.value);
         }
     }
 
     // Function to add lastname validation
     const lastNamevalidation = (e) => {
-        console.log("errors", errors)
-        setLastname(e.target.value);
-        if (lastname.length < 2) {
-            setErrors({ ...errors, lastname: "Last Name must be at least 2 characters" })
-            // setCanSubmit(false)
-
+        setNewUser(false); // We need to make it false to enable typing new input
+        if (e.target.value.length < 2) {
+            setErrors({ ...errors, lastname: "Last Name must be at least 2 characters" })            
         } else {
             setErrors({ ...errors, lastname: "" })
+            setLastname(e.target.value);
         }
     }
 
     // Function to add email validation for length
     const emailValidation = (e) => {
-        setEmail(e.target.value);
-        if (email.length < 5) {
+        setNewUser(false); // We need to make it false to enable typing new input
+        if (e.target.value.length < 5) {
             setErrors({ ...errors, email: "Email must be at least 5 characters" })
         } else {
             setErrors({ ...errors, email: "" })
+            setEmail(e.target.value);
         }
     }
 
     // Function to add email validation for valid
     const emailValidation2 = (e) => {
-        setEmail(e.target.value);
-        if (!email.includes('@')) {
+        setNewUser(false); // We need to make it false to enable typing new input
+        if (!e.target.value.includes('@')) {
             setErrors({ ...errors, email: errors.email + "\n" + "Email must be valid email" })
-            // setCanSubmit(false)
-
+            setEmail(e.target.value);
         }
     }
 
     // Function to add validation for password
     const passwordValidation = (e) => {
-        setPassword(e.target.value);
-        if (password.length < 8) {
+        setNewUser(false); // We need to make it false to enable typing new input
+        if (e.target.value.length < 8) {
             setErrors({ ...errors, password: "Password must be at least 8 characters" })
         } else {
             setErrors({ ...errors, password: "" })
+            setPassword(e.target.value);
         }
     }
 
     // Function to add validation for confirmPassword
     const confirmPasswordValidation = (e) => {
-        setConfirmPassword(e.target.value);
-        if (confirmPassword.length < 8) {
+        setNewUser(false); // We need to make it false to enable typing new input
+        if (e.target.value.length < 8) {
             setErrors({ ...errors, confirmPassword: "Confirm Password must be at least 8 characters" })
         } else {
             setErrors({ ...errors, confirmPassword: "" })
+            setConfirmPassword(e.target.value);
         }
     }
 
     // Function to add validation for confirmPassword
     const confirmPasswordValidation2 = (e) => {
+        setNewUser(false); // We need to make it false to enable typing new input
         if (confirmPassword != password) {
             setErrors({ ...errors, confirmPassword:errors.confirmPassword +"\n"+ "Confirm Password must match the password" })
         } 
     }
-
     
-    
-    // setCanSubmit(!areAllFieldsEmpty());
     return (
         <form onSubmit={createUser}>
             <h1>User Form</h1>
             <div className="form-group">
                 <label>First Name: </label>
-                <input type="text" className="form-control" onChange={firstNamevalidation} value={firstname} />
+                <input type="text" className="form-control" onChange={firstNamevalidation}   value={newUser ? "" : undefined} />
                 <p className='text-danger'><small>{errors.firstname}</small></p>
             </div>
             <div className="form-group">
                 <label>Last Name: </label>
-                <input type="text" className="form-control" onChange={lastNamevalidation} value={lastname} />
+                <input type="text" className="form-control" onChange={lastNamevalidation} value={newUser ? "" : undefined} />
                 <p className='text-danger'><small>{errors.lastname}</small></p>
             </div>
             <div className="form-group">
                 <label>Email Address: </label>
-                <input type="text" className="form-control" onChange={emailValidation} onBlur={emailValidation2} value={email} />
+                <input type="text" className="form-control" onChange={emailValidation} onBlur={emailValidation2} value={newUser ? "" : undefined} />
                 <pre className='text-danger'><small>{errors.email}</small></pre>
             </div>
             <div className="form-group">
                 <label>Password: </label>
-                <input type="password" className="form-control" onChange={passwordValidation} value={password} />
+                <input type="password" className="form-control" onChange={passwordValidation} value={newUser ? "" : undefined} />
                 <p className='text-danger'><small>{errors.password}</small></p>
             </div>
             <div className="form-group">
                 <label>Confirm Password: </label>
-                <input type="password" className="form-control" onChange={confirmPasswordValidation} onBlur={confirmPasswordValidation2} value={confirmPassword} />
+                <input type="password" className="form-control" onChange={confirmPasswordValidation} onBlur={confirmPasswordValidation2} value={newUser ? "" : undefined} />
                 <p className='text-danger'>
                 
                 {errors.confirmPassword.split('\n').map((item, idx) => (
@@ -167,5 +166,4 @@ const UserForm = (props) => {
         </form>
     );
 };
-
 export default UserForm;

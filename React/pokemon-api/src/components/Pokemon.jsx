@@ -8,9 +8,9 @@ const Pokemon = () => {
     const [show, setShow] = useState(false); 
 
       useEffect(() => {
-        fetch('https://pokeapi.co/api/v2/pokemon')
-            .then(response => response.json())
-            .then(response => setData(response.results))
+        axios.get('https://pokeapi.co/api/v2/pokemon')
+            .then(response => setData(response.data.results))
+            // .then(response => setData(response.results))
     }, []);
 
 // axios.get('http://www.example.com').then(response=>{
@@ -26,9 +26,9 @@ const Pokemon = () => {
     <>
     <button className="btn btn-danger p-3" onClick={ handleClick }>Get Data</button>
     {show &&
-        <ul class="list-group my-3 p-3">
+        <ul className="list-group my-3 p-3">
           {data.length > 0 && data.map((pokemonItem, index)=>{
-                return (<li  key={index} class="list-group-item">{pokemonItem.name}</li>)
+                return (<li  key={index} className="list-group-item">{pokemonItem.name}</li>)
             })}
     </ul>
     }

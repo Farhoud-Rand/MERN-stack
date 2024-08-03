@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -9,13 +9,13 @@ function App() {
   // Create an empty list in state to save tasks on it 
   const [list, setList] = useState([]);
   // A flag to see if the page is first time loaded or not
-  const firstLoad = useRef(true)
+  const [firstLoad, setFirstLoad] = useState(true)
 
   // Save data in local storage
   useEffect(() => {
-    if (firstLoad.current) {
+    if (firstLoad) {
       // Only run this code on the first load
-      firstLoad.current = false;
+      setFirstLoad(false);
 
       // Load the list from localStorage
       const savedList = JSON.parse(localStorage.getItem('list'));
@@ -30,18 +30,28 @@ function App() {
 
   // Function to add new task to the list
   const changeList = (newTask) => {
-    setList([...list, newTask]);
+    // const task = { task: newTask, completed: false }
+    setList([...list, { task: newTask, completed: false }]);
   }
 
   // Remove a task from the list 
   const removeTask = (task) => {
-    setList(list.filter(todo => todo != task))
+    setList(list.filter(todo => todo !== task))
+  }
+
+  // Function to update the task completion 
+  const updateTask = (taskToUpdate) => {
+    // Find the task to update
+    const updatedTasks = list.map(task =>
+      task === taskToUpdate ? { ...task, completed: !task.completed } : task
+    );
+    setList(updatedTasks);
   }
 
   return (
     <>
       <ListForm addTask={changeList} />
-      <TodoList list={list} removeTask={removeTask} />
+      <TodoList list={list} removeTask={removeTask} updateTask={updateTask} />
     </>
   )
 }

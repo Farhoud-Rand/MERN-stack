@@ -31,7 +31,6 @@ const ListForm = (props) => {
             props.addTask(task)
             setNewTask(true)
             setError(" ")
-            console.log("list",JSON.parse(localStorage.getItem('list')))
         } else {
             setError("Error: the task should be at least 5 characters")
         }

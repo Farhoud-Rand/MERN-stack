@@ -8,7 +8,9 @@ const JokeSchema = new mongoose.Schema({
         type: String,
         minlength: [3, "Punchline must be at least 3 characters long"] 
     }
-});
+    }, {
+        timestamps: true
+    });
  
 const Joke = mongoose.model('Joke', JokeSchema);
  

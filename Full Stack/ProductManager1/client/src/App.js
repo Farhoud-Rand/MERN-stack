@@ -7,6 +7,7 @@ import {
   Link
 } from "react-router-dom";
 import ProductDetails from './components/ProductDetails';
+import Update from './views/Update';
 function App() {
   return (
     
@@ -15,6 +16,7 @@ function App() {
           <Routes>
               <Route path="/products" element={<Main/>} />
               <Route path="/products/:id" element={<ProductDetails/>} />
+              <Route path="/product/edit/:id" element={<Update/>} />
           </Routes>
         </div>
     </div>

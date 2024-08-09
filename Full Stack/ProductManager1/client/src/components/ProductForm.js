@@ -39,7 +39,7 @@ export default () => {
                         <label>description</label><br/>
                         <input type="text" className="form-control" onChange={(e)=>setDescription(e.target.value)} value={description}/>
                     </p>
-                    <input className='btn btn-info' type="submit" />
+                    <input className='btn btn-info text-white' type="submit" />
                 </form>
             </div>
         </div>

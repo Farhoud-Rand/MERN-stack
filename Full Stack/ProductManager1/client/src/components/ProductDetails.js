@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from "react-router";
+import { useNavigate,useParams } from "react-router";
 import axios from 'axios';
 
 const ProductDetails = () => {
   // Varaible to save product information 
   const [product, setProduct] = useState({})
   const { id } = useParams();
+  const navigate = useNavigate()
 
   // To get the product information we will use useEffect hook
   useEffect(() => {
-    axios.get('http://localhost:8000/api/products/'+id)
+    axios.get('http://localhost:8000/api/product/'+id)
     .then(res=> {
       console.log(res.data)
       setProduct(res.data)
@@ -17,6 +18,14 @@ const ProductDetails = () => {
     .catch(err=>console.log(err))
   }, [id])
 
+  const deleteProduct = () => {
+    axios.delete("http://localhost:8000/api/product/"+id)
+        .then(res => navigate(-1))
+        .catch(err => {
+            console.error('Error deleting product:', err);
+        });
+  }
+  
   return (
     <div className='my-3'>
       <h1>Product Details</h1>
@@ -33,6 +42,8 @@ const ProductDetails = () => {
         <h3 className='col-2'>Description:</h3>
         <h6 className='col-2'>{product.description}</h6>
       </div> 
+      <button className="my-3 btn btn-success"onClick={() => navigate(-1)}>Go Back</button>
+      <button className="my-3 mx-3 btn btn-danger"onClick={() => deleteProduct()}>Delete</button>
     </div>
   )
 }

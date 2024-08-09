@@ -6,13 +6,15 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import ProductDetails from './components/ProductDetails';
 function App() {
   return (
     
     <div className="container">
         <div className="row">
           <Routes>
-              <Route path="/" element={<Main/>} />
+              <Route path="/products" element={<Main/>} />
+              <Route path="/products/:id" element={<ProductDetails/>} />
           </Routes>
         </div>
     </div>

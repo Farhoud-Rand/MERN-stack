@@ -15,7 +15,7 @@ module.exports.addNewAuthor = (request, response) => {
 module.exports.getAllAuthors = (request, response) => {
     Author.find({})
     .then(authors => response.json(authors))
-    .catch(err => response.json(err))
+    .catch(err => response.status(400).json(err))
 }
 
 // Function to get a author information by its ID 
@@ -36,5 +36,5 @@ module.exports.updateAuthor = (request, response) => {
 module.exports.deleteAuthor = (request, response) => {
     Author.deleteOne({ _id: request.params.id })
         .then(deleteConfirmation => response.json(deleteConfirmation))
-        .catch(err => response.json(err))
+        .catch(err => response.status(400).json(err))
 }

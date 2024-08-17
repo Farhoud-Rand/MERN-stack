@@ -9,19 +9,23 @@ const Create = () => {
     const [errors, setErrors] = useState([]);
     const navigate = useNavigate()
 
+    // This function is used to create an author
     const createAuthor = author => {
         axios.post('http://localhost:8000/api/author', author)
+            // If there is no errors
+            // ! Navigate back to the main page
             .then(res => {
                 navigate(-1)
                 console.log(res.data)
             })
+            // If there is errors we set the errors equal to the err.response
+            // And pass it as props to the form.
             .catch(err => {
                 console.log(err.response.data.errors)
                 const errorResponse = err.response.data.errors;
                 setErrors(errorResponse);
             })
     }
-
 
     return (
         <>

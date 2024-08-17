@@ -21,29 +21,31 @@ const PlayerForm = (props) => {
     }
 
     return (
-        <form onSubmit={handleSubmit} >
-            <p>
-                <label className='form-label'>Name</label><br />
-                <input
-                    type="text"
-                    name="name" value={name}
-                    className='form-control'
-                    onChange={handleName} />
+        <div className='container'>
+            <form onSubmit={handleSubmit} >
+                <p>
+                    <label className='form-label'>Name</label><br />
+                    <input
+                        type="text"
+                        name="name" value={name}
+                        className='form-control'
+                        onChange={handleName} />
                     {error && <small className="text-danger">{error}</small>}
-                {errors.name && <small className="text-danger">{errors.name.message}</small>}
-            </p>
-            <p>
-                <label className='form-label'>Position</label><br />
-                <input
-                    type="text"
-                    name="name" value={position}
-                    className='form-control'
-                    onChange={(e) => { setPosition(e.target.value) }} />
-                {errors.position && <small className="text-danger">{errors.position.message}</small>}
-            </p>
+                    {errors.name && <small className="text-danger">{errors.name.message}</small>}
+                </p>
+                <p>
+                    <label className='form-label'>Position</label><br />
+                    <input
+                        type="text"
+                        name="name" value={position}
+                        className='form-control'
+                        onChange={(e) => { setPosition(e.target.value) }} />
+                    {errors.position && <small className="text-danger">{errors.position.message}</small>}
+                </p>
 
-            <input type="submit" value="Submit" className='btn btn-success' />
-        </form>
+                <input type="submit" value="Submit" className='btn btn-success mb-5' />
+            </form>
+        </div>
     )
 }
 

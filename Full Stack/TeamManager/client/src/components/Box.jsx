@@ -5,12 +5,12 @@ const Box = (props) => {
     return (
         <>
             <div className="container">
-                <div className="d-flex justify-content-start mt-5 mb-2">
+                {/* <div className="d-flex justify-content-start mt-5 mb-2">
                     <span className='col-1'></span>
                     <Link className='mx-2' to='/players/list'>Manage Player</Link>
                     |
                     <Link className='mx-2' to='/players/game'>Manage Player Status</Link>
-                </div>
+                </div> */}
                 <div className='border border-dark'>
                     <div className="d-flex justify-content-start my-2">
                         <span className='col-1'></span>

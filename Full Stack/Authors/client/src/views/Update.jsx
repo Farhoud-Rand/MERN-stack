@@ -4,21 +4,19 @@ import Header from '../components/Header';
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios';
 
-const Update = () => {
+const Update = ({ loaded, author, getAuthor }) => {
     const { id } = useParams();
-    const [author, setAuthor] = useState({})
     const [errors, setErrors] = useState("")
-    const [loaded, setLoaded] = useState(false)
 
     const navigate = useNavigate()
+
+    // This function is used to get the author we want to update 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/author/' + id)
-            .then(res => {
-                setAuthor(res.data)
-                setLoaded(true)
-            })
+        getAuthor(id)
     }, []);
 
+    // This function is used to update the author and if the update is complete, navigate to the main page 
+    // and if there is an error respond with status:400, and display it.
     const updateAuthor = author => {
         axios.patch('http://localhost:8000/api/author/' + id, author)
             .then(res => {

@@ -4,30 +4,17 @@ import PlayerTable from '../components/PlayerTable'
 import axios from 'axios'
 
 const Index = (props) => {
-    const [players, setPlayers] = useState([]);
+    
+    
     // const [loaded, setLoaded] = useState(false);
 
-    useEffect(() => {
-        fetchPlayers();
-    }, []);
 
-    //Execute the fetching inside a function instead of inside the useEffect.
-    const fetchPlayers = () => {
-        axios.get("http://localhost:8000/api/players")
-            .then(res => {
-                setPlayers(res.data);
-                // setLoaded(true);
-            })
-            .catch(err => {
-                console.error("Error fetching players:", err);
-            });
-    }
     // const handleAddPlayer = () => {
     //         fetchPlayers(); // Refresh the player list after adding a new player
     //     }
 
     const removeFromDom = playerId => {
-        setPlayers(players.filter(player => player._id !== playerId));
+        props.setPlayers(props.players.filter(player => player._id !== playerId));
     }
 
     const deletePlayer = (playerId) => {
@@ -42,7 +29,7 @@ const Index = (props) => {
     return (
         <>
             <Box>
-                <PlayerTable players={players} delete={deletePlayer}></PlayerTable>
+                <PlayerTable players={props.players} delete={deletePlayer}></PlayerTable>
             </Box>
         </>
     )

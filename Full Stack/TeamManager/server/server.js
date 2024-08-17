@@ -8,4 +8,6 @@ app.use(cors());                    // To allow our express project to communica
 app.use(express.json());            // This is in order to allow POST data
 app.use(express.urlencoded({ extended: true })); // This is in order to allow POST data
 require('./routes/player.routes')(app);
+require('./routes/game.routes')(app);
+require('./routes/connector.routes')(app);
 app.listen(port, () => console.log(`Listening on port: ${port}`));

@@ -11,6 +11,7 @@ const Create = (props) => {
     const createPlayer = player => {
         axios.post('http://localhost:8000/api/player', player)
           .then(res => {
+            props.fetchPlayers();
             navigate(-1)
             console.log(res.data)
           })

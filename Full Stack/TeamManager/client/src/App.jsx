@@ -18,6 +18,7 @@ function App() {
     axios.get("http://localhost:8000/api/players")
         .then(res => {
             setPlayers(res.data);
+            // setLoaded(true);
         })
         .catch(err => {
             console.error("Error fetching players:", err);
